@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export const App = (props) => {
+  const [firstName, setFirstName] = useState('');
 
-export default App;
+  const changeFirstName = (e) => {
+    setFirstName(e.target.value.toUpperCase());
+  };
+
+  const color = firstName[0] === '@' ? 'green' : 'red';
+  // komponent kontrolowany
+  // Co nam to daje?
+  //  - mozna wyświetlać gdzie indziej jego wartość,
+
+  return (
+    <>
+      <h1>{firstName}</h1>
+      <input
+        type="text"
+        value={firstName}
+        onChange={changeFirstName}
+        style={{ backgroundColor: `${color}` }}
+      />
+      <p>You are entered {firstName.length} characters.</p>
+      {/* return <input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} />; */}
+    </>
+  );
+};
